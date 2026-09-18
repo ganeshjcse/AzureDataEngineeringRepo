@@ -1,0 +1,15 @@
+{
+	"name": "pocadf475632",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "08ac272e-23d0-43f7-8571-002cba0886bb",
+		"tenantId": "89f47646-140a-4518-99d6-555b637c1651"
+	}
+}
