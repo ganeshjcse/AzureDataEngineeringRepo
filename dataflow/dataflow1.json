@@ -1,0 +1,74 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "totalsalestxt",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          ID as string,",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          Department as string,",
+				"          Salary as string,",
+				"          LocationID as string,",
+				"          Country as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     moveFiles: ['',''],",
+				"     rowUrlColumn: 'filename',",
+				"     wildcardPaths:['*.csv']) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          id as integer,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          department as string,",
+				"          salary as integer,",
+				"          locationId as integer,",
+				"          country as string,",
+				"          filename as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          id = ID,",
+				"          first_name = {First Name},",
+				"          last_name = {Last Name},",
+				"          department = Department,",
+				"          salary = Salary,",
+				"          locationId = LocationID,",
+				"          country = Country,",
+				"          filename",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
