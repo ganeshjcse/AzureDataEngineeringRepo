@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -82,6 +83,81 @@
 								"enableStaging": false,
 								"translator": {
 									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "ID",
+												"type": "String"
+											},
+											"sink": {
+												"name": "id",
+												"type": "int",
+												"precision": 10
+											}
+										},
+										{
+											"source": {
+												"name": "First Name",
+												"type": "String"
+											},
+											"sink": {
+												"name": "first_name",
+												"type": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Last Name",
+												"type": "String"
+											},
+											"sink": {
+												"name": "last_name",
+												"type": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Department",
+												"type": "String"
+											},
+											"sink": {
+												"name": "department",
+												"type": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Salary",
+												"type": "String"
+											},
+											"sink": {
+												"name": "salary",
+												"type": "int",
+												"precision": 10
+											}
+										},
+										{
+											"source": {
+												"name": "LocationID",
+												"type": "String"
+											},
+											"sink": {
+												"name": "locationId",
+												"type": "int",
+												"precision": 10
+											}
+										},
+										{
+											"source": {
+												"name": "Country",
+												"type": "String"
+											},
+											"sink": {
+												"name": "country",
+												"type": "varchar"
+											}
+										}
+									],
 									"typeConversion": true,
 									"typeConversionSettings": {
 										"allowDataTruncation": true,
