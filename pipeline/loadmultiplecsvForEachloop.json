@@ -77,7 +77,6 @@
 									"type": "AzureSqlSink",
 									"writeBehavior": "insert",
 									"sqlWriterUseTableLock": false,
-									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
@@ -105,13 +104,7 @@
 							"outputs": [
 								{
 									"referenceName": "AzureSqlTable2",
-									"type": "DatasetReference",
-									"parameters": {
-										"TableName": {
-											"value": "@concat(substring(item(). name,0,lastIndexOf(item().name,'_')))",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							]
 						}
